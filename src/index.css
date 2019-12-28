@@ -1,0 +1,289 @@
+@import url(https://fonts.googleapis.com/css?family=Patrick+Hand&display=swap);
+body{
+	font-family: Patrick Hand,cursive;
+	margin: 20px;
+	font-weight: 200;
+	background: #ffffff url('/image/bg.png');
+}
+.board-row:after {
+	clear: both;
+	content: "";
+	display: table; 
+}
+.game-board {
+	display: flex;
+	flex-direction: column;
+}
+.board {
+	position: relative;
+	border: 10px solid #cfc8b8;
+	-webkit-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.75);
+	z-index: 10;
+}
+.game {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+.game-board {
+	position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-flex: 0.7;
+	-ms-flex: 0.7;
+	flex: 0.7;
+	background-size: cover;
+	background-position: 0 -50px;
+}
+.game-board:after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	content: '';
+	background-color: rgba(0, 0, 0, 0.3);
+	z-index: 0;
+}
+.square {
+	background: #fff;
+	border: 1px solid #999;
+	float: left;
+	font-size: 4px;
+	font-weight: bold;
+	line-height: 60px;
+	height: 60px;
+	margin-right: -1px;
+	margin-top: -1px;
+	padding: 0;
+	text-align: center;
+	width: 60px;
+	transition: transform .5s;
+}
+.title {
+	margin: 0;
+}
+.title span {
+	font-size: 24px;
+	font-weight: bold;
+	vertical-align: baseline;
+}
+.activeWin {
+	transform: scale(1.1)
+}
+.square:hover {
+	-webkit-transition: background-color 0.5s ease;
+	transition: background-color 0.5s ease;
+	background-color: #e6e2da;
+	cursor: pointer;
+}
+.square:focus {
+	outline: none;
+}
+.square {
+	font-size: 4rem;
+	height: 100px;
+	font-family: Patrick Hand,cursive;
+	width: 100px;
+	color: #cfc8b8;
+	border: 3px solid #cfc8b8;
+}
+.square.X {
+	background-color: #524a4c;
+}
+.square.O {
+	background-color: #6b948c;
+}
+
+.kbd-navigation .square:focus {
+	background: #ddd;
+}
+h4 {
+	margin-bottom: 0px; 
+}
+.game {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.game-info {
+	text-align: center;
+	margin: 0 10px 10px;
+}
+.btn {
+	background: transparent;
+	margin: 10px;
+	padding: 5px;
+	border: 0;
+	font-weight: bold;
+}
+.game-stats,
+.single_info {
+	display: flex;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+}
+.single_info label {
+	font-size: 20px;
+	font-weight: bold;
+	margin: 0px 10px;
+}
+.game-stats .stats {
+	margin: 15px 10px 0px;
+	font-size: 15px;
+}
+
+.game-stats .stats span {
+	font-size: 20px;
+	font-weight: bold;
+}
+.game-stats img,
+.single_info img {
+	vertical-align: middle;
+}
+.game-stats p:last-child {
+	cursor: pointer;
+}
+.all-stats {
+	cursor: pointer;
+	margin: 5px;
+}
+
+/* Radio Buttton */
+/* The container */
+.container {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	padding-right: 20px; 
+	margin-bottom: 12px;
+	cursor: pointer;
+	font-size: 22px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+	position: absolute;
+	margin: 5px;
+	height: 25px;
+	width: 25px;
+	left: 0;
+	vertical-align: middle;
+	background-color: #ddd;
+	border-radius: 50%;
+}
+.select_difficulty .checkmark {
+	margin: 0px;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+	background-color: #aaa;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+	background-color: #6b948c;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+	display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+.select_player,
+.select_difficulty {
+	display: flex;
+	margin: 5px 0;
+	justify-content: center;
+}
+.select_difficulty .container {
+	font-size: 16px;
+	margin: 0 12px;
+}
+.select_difficulty .checkmark {
+	width: 21px;
+	height: 21px;
+}
+.select_difficulty .container .checkmark:after {
+	top: 7px;
+	left: 7px;
+	width: 7px;
+	height: 7px;
+	background: white;
+}
+.developedby {
+	margin: 10px 0;
+}
+
+.table-bordered {
+	border: 1px solid #dee2e6;
+}
+
+.table {
+	width: 100%;
+	margin-bottom: 1rem;
+	color: #212529;
+}
+table {
+	border-collapse: collapse;
+}
+.table-bordered td, .table-bordered th {
+	border: 1px solid #dee2e6;
+}
+.table td, .table th {
+	padding: .75rem;
+	vertical-align: top;
+	border-top: 1px solid #dee2e6;
+}
+.table-bordered thead td, .table-bordered thead th {
+	border-bottom-width: 2px;
+}
+.table thead th {
+	vertical-align: bottom;
+	border-bottom: 2px solid #dee2e6;
+}
+.table-bordered td, .table-bordered th {
+	border: 1px solid #dee2e6;
+}
+th {
+	text-align: inherit;
+}
