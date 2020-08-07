@@ -2,8 +2,7 @@
 
 ### How To Run 
 1) `npm install`
-2) `npm i sweetalert`
-3) `npm start`
+2) `npm start`
 
 In the project directory, you can run:
 

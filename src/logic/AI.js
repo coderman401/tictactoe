@@ -1,4 +1,4 @@
-function arrayToMat(squares) {
+const arrayToMat = squares => {
 	let mat = []
 	let k = 0;
 	for (let i = 0; i < 3; i++) {
@@ -8,7 +8,7 @@ function arrayToMat(squares) {
 	return mat;
 }
 
-function hasMovesLeft(mat) {
+const hasMovesLeft = mat => {
 	// If it has an empty space, keep playing
 	for (let i = 0; i < 3; i++) {
 		for (let j = 0; j < 3; j++) {
@@ -17,8 +17,28 @@ function hasMovesLeft(mat) {
 	}
 	return false;
 }
+const checkWin = mat => {
+	const lines = [
+		[0, 1, 2],
+		[3, 4, 5],
+		[6, 7, 8],
+		[0, 3, 6],
+		[1, 4, 7],
+		[2, 5, 8],
+		[0, 4, 8],
+		[2, 4, 6]
+	];
 
-function evaluate(mat, depth) {
+	for (let i = 0; i < lines.length; i++) {
+		const [a, b, c] = lines[i];
+		if (mat[a] && mat[a] === mat[b] && mat[a] === mat[c]) {
+			return true;
+		}
+	}
+	return false;
+}
+
+const evaluate = (mat, depth) => {
 
 	// Check every row
 	for (let i = 0; i < 3; i++) {
@@ -51,7 +71,7 @@ function evaluate(mat, depth) {
 	return 0;
 }
 
-function minmax(mat, depth, get_max) {
+const minmax = (mat, depth, get_max) => {
 	if (hasMovesLeft(mat) === false) {
 		return evaluate(mat, depth);
 	}
@@ -89,30 +109,33 @@ function minmax(mat, depth, get_max) {
 
 }
 
-export function find_best_move(squares, difficulty) {
+const findBestMove = (squares, difficulty) => {
 	let mat = arrayToMat(squares);
 	let val, row = -1, col = -1, best = -Infinity;
-	for (let i = 0; i < 3; i++) {
-		for (let j = 0; j < 3; j++) {
-			if (mat[i][j] === null) {
-				if(difficulty === 'easy') {
-					mat[i][j] = 'O';
-				} 
-				// else if(difficulty === 'hard') {
-				// 	mat[i][j] = 'o';
-				// } 
-				else if(difficulty === 'expert') {
-					mat[i][j] = 'X';
-				}
-				val = minmax(mat, 0, false);
-				mat[i][j] = null;
-				if (val > best) {
-					best = val;
-					row = i;
-					col = j;
+	
+	if(checkWin(squares) === false) {
+		for (let i = 0; i < 3; i++) {
+			for (let j = 0; j < 3; j++) {
+				if (mat[i][j] === null) {
+					if(difficulty === 'easy') {
+						mat[i][j] = 'O';
+					} else if(difficulty === 'hard') {
+						mat[i][j] = 'x';
+					} else if(difficulty === 'expert') {
+						mat[i][j] = 'X';
+					}
+					val = minmax(mat, 0, false);
+					mat[i][j] = null;
+					if (val > best) {
+						best = val;
+						row = i;
+						col = j;
+					}
 				}
 			}
 		}
+		return (3 * row) + col;
 	}
-	return (3 * row) + col;
 }
+
+export default findBestMove;
