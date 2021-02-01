@@ -276,7 +276,7 @@ class Game extends React.Component {
                         draw={player === 'single' ? draw_single : draw_two}
                         onClickElement={()=> this.showStats()} />
                 </div>
-                <h5 className="developedby">Developed By : frustrated_developer</h5>
+                <h5 className="developedby">Developed By : coderman_401</h5>
                 <a className="link" target="blank" href="https://coderman-401.web.app/demos">Visit here for more.</a>
             </div>
         );
