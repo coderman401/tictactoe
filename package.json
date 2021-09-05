@@ -2,7 +2,6 @@
     "name": "tic-tac-toe",
     "version": "0.1.0",
     "private": true,
-    "homepage": "https://frustrateddeveloper.github.io/tictactoe",
     "dependencies": {
         "@sweetalert/with-react": "^0.1.1",
         "react": "^16.9.0",
@@ -32,8 +31,5 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
-    },
-    "devDependencies": {
-        "gh-pages": "^2.1.1"
     }
 }
