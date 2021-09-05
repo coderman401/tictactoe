@@ -15,7 +15,7 @@ const calculateWinner = squares => {
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
             return {
                 winner: squares[a],
-                line: [a,b,c]
+                line: [a, b, c]
             };
         }
     }

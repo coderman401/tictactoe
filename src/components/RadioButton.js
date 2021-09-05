@@ -5,7 +5,7 @@ const RadioButton = props => {
         <div className="radio-button">
             <label className="radio-container">
                 {props.label}
-                <input 
+                <input
                     value={props.value}
                     type="radio"
                     name={props.name}

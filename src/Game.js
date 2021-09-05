@@ -28,12 +28,12 @@ class Game extends React.Component {
         this.onPlayerChange = this.onPlayerChange.bind(this);
         this.onDifficultyChange = this.onDifficultyChange.bind(this);
     }
- 
+
 
     handleClick(i) {
-        const {squares} = this.state;
+        const { squares } = this.state;
         const winnerdata = calculateWinner(squares);
-        if (winnerdata|| squares[i]) {
+        if (winnerdata || squares[i]) {
             return;
         }
 
@@ -81,9 +81,9 @@ class Game extends React.Component {
     }
 
     onPlayerChange(e) {
-        const {x_wins_single, o_wins_single, draw_single, x_wins_two, o_wins_two, draw_two} = this.state;
+        const { x_wins_single, o_wins_single, draw_single, x_wins_two, o_wins_two, draw_two } = this.state;
         this.setState({
-            player : e.currentTarget.value
+            player: e.currentTarget.value
         });
         if (e.currentTarget.value === 'single') {
             this.restartGame(x_wins_two, o_wins_two, draw_two);
@@ -91,20 +91,20 @@ class Game extends React.Component {
             this.restartGame(x_wins_single, o_wins_single, draw_single, true, 'single');
         }
     }
-    
+
     onDifficultyChange(e) {
-        const {x_wins_two, o_wins_two, draw_two} = this.state;
+        const { x_wins_two, o_wins_two, draw_two } = this.state;
         this.setState({
-            difficulty : e.currentTarget.value
+            difficulty: e.currentTarget.value
         });
         this.restartGame(x_wins_two, o_wins_two, draw_two);
     }
 
     showStats() {
-        const {x_wins_single, o_wins_single, draw_single, x_wins_two, o_wins_two, draw_two} = this.state;
+        const { x_wins_single, o_wins_single, draw_single, x_wins_two, o_wins_two, draw_two } = this.state;
         swal({
             title: "Game Statitics",
-            buttons:  "OK",
+            buttons: "OK",
             content: (
                 <div className="stats-tabel">
                     <StateTable
@@ -121,7 +121,7 @@ class Game extends React.Component {
     };
 
     renderPlayers = () => {
-        const {player} = this.state;
+        const { player } = this.state;
         const playersComponent = (
             <div className="select_player">
                 <RadioButton
@@ -144,25 +144,25 @@ class Game extends React.Component {
     }
 
     renderDifficulty = () => {
-        const {player, difficulty} = this.state;
+        const { player, difficulty } = this.state;
         if (player === 'single') {
             const difficultyComponent = (
                 <div className="select_difficulty">
-                    <RadioButton 
+                    <RadioButton
                         value="easy"
                         label="Easy"
                         name="radio1"
                         onChange={this.onDifficultyChange}
                         checked={difficulty === 'easy'}
                     />
-                    <RadioButton 
+                    <RadioButton
                         value="hard"
                         label="Hard"
                         name="radio1"
                         onChange={this.onDifficultyChange}
                         checked={difficulty === 'hard'}
                     />
-                    <RadioButton 
+                    <RadioButton
                         value="expert"
                         label="Expert"
                         name="radio1"
@@ -178,19 +178,19 @@ class Game extends React.Component {
     renderPlayerTurnInfo = () => {
         const { player, xIsNextTwoPlayer } = this.state;
         let turnInfoComponent;
-        const playerTurn = <img alt="player" src={`image/${ xIsNextTwoPlayer ? "x.png" : "o.png"}`} width="18"/>
+        const playerTurn = <img alt="player" src={`image/${xIsNextTwoPlayer ? "x.png" : "o.png"}`} width="18" />
         if (player === 'two') {
             turnInfoComponent = (
                 <div className="single_info">
                     <label>Turn : {playerTurn} - Player </label>
-                </div> 
+                </div>
             );
-        } 
+        }
         if (player === 'single') {
             turnInfoComponent = (
                 <div className="single_info">
-                    <label>You : <img src="image/o.png" width="18" alt="O"/></label>
-                    <label>Computer: <img src="image/x.png" width="18" alt="X"/></label>
+                    <label>You : <img src="image/o.png" width="18" alt="O" /></label>
+                    <label>Computer: <img src="image/x.png" width="18" alt="X" /></label>
                 </div>
             );
         }
@@ -198,7 +198,7 @@ class Game extends React.Component {
     }
     checkForWinner = () => {
         const { squares, player, xIsNextTwoPlayer } = this.state;
-        let { x_wins_single, o_wins_single, draw_single, x_wins_two, o_wins_two, draw_two} = this.state;
+        let { x_wins_single, o_wins_single, draw_single, x_wins_two, o_wins_two, draw_two } = this.state;
         const winnerdata = calculateWinner(squares);
         let winner_player, turn;
 
@@ -212,14 +212,14 @@ class Game extends React.Component {
                     winner_player = 'You';
                     o_wins_single += 1;
                 }
-                swalll({title : winner_player + ' Won'}).then(() =>{
+                swalll({ title: winner_player + ' Won' }).then(() => {
                     setTimeout(() => {
                         this.restartGame(x_wins_single, o_wins_single, draw_single, turn, player);
                     }, 1000);
                 });
             } else if (!squares.includes(null)) {
                 draw_single += 1;
-                swalll({title :'Game Draw !!!'}).then(() =>{
+                swalll({ title: 'Game Draw !!!' }).then(() => {
                     setTimeout(() => {
                         this.restartGame(x_wins_single, o_wins_single, draw_single, xIsNextTwoPlayer, player);
                     }, 1000);
@@ -236,14 +236,14 @@ class Game extends React.Component {
                     o_wins_two += 1;
                     turn = false;
                 }
-                swalll({title : winner_player + ' Won'}).then(() =>{
+                swalll({ title: winner_player + ' Won' }).then(() => {
                     setTimeout(() => {
                         this.restartGame(x_wins_two, o_wins_two, draw_two, turn, player);
                     }, 1000);
                 });
             } else if (!squares.includes(null)) {
                 draw_two += 1;
-                swalll({title :'Game Draw !!!'}).then(() =>{
+                swalll({ title: 'Game Draw !!!' }).then(() => {
                     setTimeout(() => {
                         this.restartGame(x_wins_two, o_wins_two, draw_two, xIsNextTwoPlayer);
                     }, 1000);
@@ -254,16 +254,16 @@ class Game extends React.Component {
 
     render() {
         const { squares, player } = this.state;
-        let { x_wins_single, o_wins_single, draw_single, x_wins_two, o_wins_two, draw_two} = this.state;
+        let { x_wins_single, o_wins_single, draw_single, x_wins_two, o_wins_two, draw_two } = this.state;
         this.checkForWinner();
 
         return (
             <div className="game-wrapper">
                 <div className="game-info">
                     <h2 className="title">Tic Tac Toe<span className="version">(Versoin : 2.24)</span></h2>
-                    { this.renderPlayers() }
-                    { this.renderDifficulty() }
-                    { this.renderPlayerTurnInfo() }
+                    {this.renderPlayers()}
+                    {this.renderDifficulty()}
+                    {this.renderPlayerTurnInfo()}
                 </div>
                 <div className="board-wrapper">
                     <Board
@@ -274,10 +274,10 @@ class Game extends React.Component {
                         xWins={player === 'single' ? x_wins_single : x_wins_two}
                         oWins={player === 'single' ? o_wins_single : o_wins_two}
                         draw={player === 'single' ? draw_single : draw_two}
-                        onClickElement={()=> this.showStats()} />
+                        onClickElement={() => this.showStats()} />
                 </div>
-                <h5 className="developedby">Developed By : coderman_401</h5>
-                <a className="link" target="blank" href="https://coderman-401.web.app/demos">Visit here for more.</a>
+                <h5 className="developedby">Developed By : coderman401</h5>
+                <a className="link" target="blank" href="https://coderman401.web.app/demos">Visit here for more.</a>
             </div>
         );
     }
